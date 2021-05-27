@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "6852dfe8-1a8a-4c74-9a3a-48b4936a4a7c",
+		"name": "Batalla Naval",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/usuario",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"contrasenia\": \"123456\",\n  \"correo\": \"jugador2@umanizales.edu.co\",\n  \"tipoUsuario\": {\n    \"codigo\": 2\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/usuario",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Barcos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/barco",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"barco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar Barco",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"contrasenia\": \"123456\",\n  \"correo\": \"jugador2@umanizales.edu.co\",\n  \"tipoUsuario\": {\n    \"codigo\": 2\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/barco",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"barco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Usuarios x Rol",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/usuario/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuario",
+						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista DE Barcos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/listabarcos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"listabarcos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar Barco a Lista DE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n            \"id\": 3,\n            \"nombre\": \"Porta Aviones\",\n            \"numeroCasillas\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/listabarcos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"listabarcos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:8080"
+		},
+		{
+			"key": "url",
+			"value": "batallanaval.umanizales.edu.co",
+			"disabled": true
+		}
+	]
+}
