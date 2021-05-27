@@ -4,6 +4,7 @@ import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.NodoDE;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
+import com.umanizales.apibatallanaval.model.entities.Barco;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class ListaDEService {
 
     public ResponseEntity<Object> adicionarDistribucionBarco(DistribucionBarcoDTO distribucion)
     {
-        listaBarcos.adicionarNodo(distribucion);
+        listaBarcos.adicionarNodoDE(distribucion);
         return new ResponseEntity<>(new RespuestaDTO("Exitoso","Barco adicionado"
                 ,null), HttpStatus.OK);
     }
@@ -44,8 +45,14 @@ public class ListaDEService {
         }
         return listado;
     }
+    public Barco encontrarBarcoxCodigo(String codigo)
+    {
+        return (Barco) this.listaBarcos.encontrarDatoxCodigo(codigo);
+    }
 
-
-
+    public int contarNodos()
+    {
+        return listaBarcos.getCont();
+    }
 
 }
