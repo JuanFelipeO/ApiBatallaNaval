@@ -1,8 +1,11 @@
 package com.umanizales.apibatallanaval.service;
+//Comportamientos
 
 
 import com.umanizales.apibatallanaval.model.dto.CasillaBarco;
-import com.umanizales.apibatallanaval.model.dto.Coordenada;
+
+
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Barco;
 import com.umanizales.apibatallanaval.utils.Constants;
@@ -41,9 +44,9 @@ public class TableroService {
         );
     }
 
-    public ResponseEntity<Object> esconderBarco(String codigo, Coordenada coordenada)
+    public ResponseEntity<Object> esconderBarco(String codigo, CoordenadaDTO coordenada)
     {
-        if(coordenada.getFila() <0 || coordenada.getCol() <0)
+        if(coordenada.getX() <0 || coordenada.getY() <0)
         {
             return new ResponseEntity<>(
                     new RespuestaDTO(Constants.MESSAGE_ROWS_COLS_POSITIVE,null,
@@ -58,9 +61,9 @@ public class TableroService {
             if(validarCoordenada(coordenada))
             {
                 //Validar que no este ocupada
-                if(tableroBarcos[coordenada.getFila()][coordenada.getCol()]==null)
+                if(tableroBarcos[coordenada.getX()][coordenada.getY()]==null)
                 {
-                    tableroBarcos[coordenada.getFila()][coordenada.getCol()]=
+                    tableroBarcos[coordenada.getX()][coordenada.getY()]=
                             new CasillaBarco(BarcoEsconder,false);
                     contEscondidos++;
                     if(contEscondidos == ListaDEService.contarNodos())
@@ -98,9 +101,9 @@ public class TableroService {
     }
 
 
-    private boolean validarCoordenada(Coordenada coord)
+    private boolean validarCoordenada(CoordenadaDTO coord)
     {
-        if(coord.getFila() < tableroBarcos.length && coord.getCol() < tableroBarcos[0].length)
+        if(coord.getX() < tableroBarcos.length && coord.getY() < tableroBarcos[0].length)
         {
             return true;
         }
@@ -125,21 +128,21 @@ public class TableroService {
         }
     }
 
-    public ResponseEntity<Object> buscarBarco(Coordenada coord)
+    public ResponseEntity<Object> buscarBarco(CoordenadaDTO coord)
     {
         if(estadoJuego)
         {
             if(validarCoordenada(coord))
             {
-                if(tableroBarcos[coord.getFila()][coord.getCol()]!=null
-                && !tableroBarcos[coord.getFila()][coord.getCol()].isMarcada())
+                if(tableroBarcos[coord.getX()][coord.getY()]!=null
+                        && !tableroBarcos[coord.getX()][coord.getY()].isEstado())
                 {
                     //eliminar el Barco de la lista
                     //ListaDEService.eliminarBarco();
-                    tableroBarcos[coord.getFila()][coord.getCol()].setMarcada(true);
+                    tableroBarcos[coord.getX()][coord.getY()].setEstado(true);
                     contadorAciertos++;
                     return this.validarEstadoJuego(true,
-                            tableroBarcos[coord.getFila()][coord.getCol()].getBarco());
+                            tableroBarcos[coord.getX()][coord.getY()].getBarco());
                 }
                 else
                 {
@@ -214,3 +217,4 @@ public class TableroService {
         }
     }
 }
+

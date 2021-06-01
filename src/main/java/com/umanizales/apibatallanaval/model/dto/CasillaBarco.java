@@ -10,8 +10,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CasillaBarco implements Serializable {
+public class CasillaBarco implements Serializable
+{
     private Barco barco;
-    private boolean marcada;
-
+    private boolean estado;
 }
