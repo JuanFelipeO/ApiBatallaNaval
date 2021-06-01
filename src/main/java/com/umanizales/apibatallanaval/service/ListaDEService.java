@@ -55,4 +55,8 @@ public class ListaDEService {
         return listaBarcos.getCont();
     }
 
+    public int obtenerContadorLista()
+    {
+        return listaBarcos.getCont();
+    }
 }
