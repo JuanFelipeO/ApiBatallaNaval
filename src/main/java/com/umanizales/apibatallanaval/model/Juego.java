@@ -12,8 +12,8 @@ public class Juego
 {
     public int id;
     public Tablero tableroJugador1;
-    public Tablero TableroJugador2;
-    public int numeroBarcos; // preguntar cual es este tipo de dato ???
+    public Tablero tableroJugador2;
+    public int numeroBarcos;
     public byte turno;
     public int aciertosJug1;
     public int aciertosJug2;
@@ -25,6 +25,8 @@ public class Juego
    {
        this.id = id;
        this.numeroBarcos = numeroBarcos;
+       tableroJugador1 = new Tablero(id,10,10,jugador1, listaDE.clonarLista());
+       tableroJugador2 = new Tablero(id,10,10,jugador2, listaDE.clonarLista());
    }
 
     public boolean disparar(int x, int y)
@@ -32,7 +34,7 @@ public class Juego
         return false;
     }
 
-    public String validarDisparo(int x, int y) // preguntar parametros de este metodo???
+    public String validarDisparo(int x, int y)
     {
         return null;
     }
