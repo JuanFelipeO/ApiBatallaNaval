@@ -35,4 +35,9 @@ public class UsuarioController {
         return usuarioService.findUsersByRol(codeRol);
     }
 
+    @GetMapping(path = "usuarioporcorreo/{mail}")
+    public @ResponseBody ResponseEntity<Object> findUsersByMail(@PathVariable("mail") String mail)
+    {
+        return usuarioService.findUsersByMail(mail);
+    }
 }
