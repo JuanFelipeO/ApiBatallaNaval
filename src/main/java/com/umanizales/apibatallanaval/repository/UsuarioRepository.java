@@ -9,4 +9,7 @@ import java.util.List;
 public interface UsuarioRepository  extends CrudRepository<Usuario,Integer> {
     @Query("SELECT usuario FROM Usuario usuario where usuario.tipoUsuario.codigo=?1")
     List<Usuario> obtenerUsuariosPorRol(short codigoRol);
+
+    @Query("SELECT usuario FROM Usuario usuario where usuario.correo=?1")
+    String obtenerUsuariosPorCorreo(String correo);
 }
