@@ -25,9 +25,26 @@ public class Juego
    {
        this.id = id;
        this.numeroBarcos = numeroBarcos;
-       tableroJugador1 = new Tablero(id,10,10,jugador1, listaDE.clonarLista());
-       tableroJugador2 = new Tablero(id,10,10,jugador2, listaDE.clonarLista());
+
+       //jugador1 = distribucionBarcoDTO.definirUbicacion();
    }
+
+    public void crearTableros(Usuario jugador1, Usuario jugador2, int numeroBarcos)
+    {
+        if (numeroBarcos > 0 && numeroBarcos <= 9) {
+            tableroJugador1 = new Tablero(id, 10, 10, jugador1, listaDE.clonarLista());
+            tableroJugador2 = new Tablero(id, 10, 10, jugador2, listaDE.clonarLista());
+        }
+        else if (numeroBarcos >= 10 && numeroBarcos <= 20) {
+            tableroJugador1 = new Tablero(id, 20, 20, jugador1, listaDE.clonarLista());
+            tableroJugador2 = new Tablero(id, 20, 20, jugador2, listaDE.clonarLista());
+        }
+        else if (numeroBarcos > 20 && numeroBarcos <= 30) {
+            tableroJugador1 = new Tablero(id, 30, 30, jugador1, listaDE.clonarLista());
+            tableroJugador2 = new Tablero(id, 30, 30, jugador2, listaDE.clonarLista());
+
+        }
+    }
 
     public boolean disparar(int x, int y)
     {

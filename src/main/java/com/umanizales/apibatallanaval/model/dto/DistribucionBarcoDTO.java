@@ -26,7 +26,7 @@ public class DistribucionBarcoDTO implements Serializable {
         {
             //TODO Verificar que la coordenada este libre
             casillas[i]= new CoordenadaDTO(x,y,false);
-            if(orientacion==1)//Horizontal
+            if(orientacion == 1)//Horizontal
             {
                 x++;
             }
