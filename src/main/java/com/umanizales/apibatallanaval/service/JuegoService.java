@@ -22,7 +22,7 @@ public class JuegoService {
     //private List<Juego> juego;
     private Juego juego;
 
-    public ResponseEntity<Object> crearJuego(Usuario jugador1, Usuario jugador2)
+    public ResponseEntity<Object> crearJuego(String jugador1, String jugador2)
     {
         // validar y crear juego con los 2 tableros
 

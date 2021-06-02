@@ -45,4 +45,19 @@ public class UsuarioService {
                 usuarioRepository.obtenerUsuariosPorRol(codeRol),null), HttpStatus.OK);
     }
 
+    public ResponseEntity<Object> findUsersByMail(String mail)
+    {
+        try
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    usuarioRepository.obtenerUsuarioPorCorreo(mail),
+                    "Usuario no encontrado en la base de datos"),HttpStatus.CONFLICT);
+        }
+        catch(Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    null,"Ocurrió un error almacenando el usuario"),
+                    HttpStatus.OK);
+        }
+    }
 }

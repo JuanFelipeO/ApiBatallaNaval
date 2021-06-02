@@ -2,6 +2,7 @@ package com.umanizales.apibatallanaval.service;
 
 import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.NodoDE;
+import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Barco;
@@ -58,5 +59,11 @@ public class ListaDEService {
     public int obtenerContadorLista()
     {
         return listaBarcos.getCont();
+    }
+
+    public ResponseEntity<Object> validarExistenciaCoordenadas(CoordenadaDTO[] coordenadas)
+    {
+        return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                listaBarcos.validarExistenciaCoordenadas(coordenadas),null), HttpStatus.OK);
     }
 }
