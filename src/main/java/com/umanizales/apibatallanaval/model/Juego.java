@@ -29,7 +29,7 @@ public class Juego
        //jugador1 = distribucionBarcoDTO.definirUbicacion();
    }
 
-    public void crearTableros(Usuario jugador1, Usuario jugador2, int numeroBarcos)
+    public void crearTableros(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos)
     {
         if (numeroBarcos > 0 && numeroBarcos <= 9) {
             tableroJugador1 = new Tablero(id, 10, 10, jugador1, listaDE.clonarLista());
