@@ -66,4 +66,9 @@ public class ListaDEService {
         return new ResponseEntity<>(new RespuestaDTO("Exitoso",
                 listaBarcos.validarExistenciaCoordenadas(coordenadas),null), HttpStatus.OK);
     }
+
+    public ListaDE getListaBarcos()
+    {
+        return listaBarcos;
+    }
 }

@@ -2,11 +2,14 @@ package com.umanizales.apibatallanaval.controller;
 
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.RequestJuegoDTO;
+import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
+import com.umanizales.apibatallanaval.model.entities.Usuario;
 import com.umanizales.apibatallanaval.repository.UsuarioRepository;
 import com.umanizales.apibatallanaval.service.JuegoService;
 import com.umanizales.apibatallanaval.service.ListaDEService;
 import com.umanizales.apibatallanaval.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +25,9 @@ public class JuegoController {
     private JuegoService juegoService;
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    public JuegoController(UsuarioService usuarioService,
-                           ListaDEService listaDEService, JuegoService juegoService) {
+    public JuegoController(UsuarioService usuarioService, ListaDEService listaDEService, JuegoService juegoService,
+                           UsuarioRepository usuarioRepository)
+    {
         this.usuarioService = usuarioService;
         this.listaDEService = listaDEService;
         this.juegoService = juegoService;
@@ -32,25 +35,29 @@ public class JuegoController {
     }
 
     @PostMapping(path = "/crear")
-    public @ResponseBody ResponseEntity<Object> crearJuego(@RequestBody RequestJuegoDTO juegoDTO)
-    {
+    public @ResponseBody ResponseEntity<Object> crearJuego(@RequestBody RequestJuegoDTO juegoDTO) {
 
         // consulta para saber si usuarios existen
         String usuario1 = juegoDTO.getUsuario1();
         String usuario2 = juegoDTO.getUsuario2();
-        RequestJuegoDTO juegoDTO1 = new RequestJuegoDTO();
-        RequestJuegoDTO juegoDTO2 = new RequestJuegoDTO();
-        if (usuarioRepository.obtenerUsuarioPorCorreo(usuario1) == juegoDTO.getUsuario1())
-        {
+        try {
+            Usuario jugador1 = usuarioRepository.obtenerUsuarioPorCorreo(usuario1);
+            Usuario jugador2 = usuarioRepository.obtenerUsuarioPorCorreo(usuario2);
 
-            juegoDTO1.setUsuario1(juegoDTO.getUsuario1());
+            if (jugador1 != null && jugador2 != null) {
+                return juegoService.crearJuego(jugador1, jugador2);
+            } else {
+                return new ResponseEntity<>(new RespuestaDTO("Error",
+                        null, "El juego no se puede crear porque no hay usuarios correspondientes"),
+                        HttpStatus.CONFLICT);
+            }
         }
-        if (usuarioRepository.obtenerUsuarioPorCorreo(usuario2) == juegoDTO.getUsuario2())
+        catch (Exception e)
         {
-
-            juegoDTO2.setUsuario2(juegoDTO2.getUsuario2());
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null, "El usuario no esta en la base de datos"),
+                    HttpStatus.CONFLICT);
         }
-        return juegoService.crearJuego(juegoDTO1.getUsuario1(),juegoDTO2.getUsuario2());
     }
 
     @PostMapping(path = "/validar")

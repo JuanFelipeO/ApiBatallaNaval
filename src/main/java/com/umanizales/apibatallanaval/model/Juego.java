@@ -21,12 +21,12 @@ public class Juego
     public ListaDE listaDE;
     public DistribucionBarcoDTO distribucionBarcoDTO;
 
-   public Juego(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos)
+   public Juego(int id, Usuario jugador1, Usuario jugador2, ListaDE listaDE)
    {
        this.id = id;
-       this.numeroBarcos = numeroBarcos;
+       this.listaDE = listaDE;
 
-       //jugador1 = distribucionBarcoDTO.definirUbicacion();
+       crearTableros(id,jugador1,jugador2,listaDE.getCont());
    }
 
     public void crearTableros(int id, Usuario jugador1, Usuario jugador2, int numeroBarcos)
