@@ -1,10 +1,16 @@
 package com.umanizales.apibatallanaval.model;
 
+import com.umanizales.apibatallanaval.controller.UsuarioController;
 import com.umanizales.apibatallanaval.model.dto.DistribucionBarcoDTO;
+import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
 import com.umanizales.apibatallanaval.model.entities.Tablero;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
+import com.umanizales.apibatallanaval.repository.UsuarioRepository;
+import com.umanizales.apibatallanaval.service.ListaDEService;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 @Getter
 @Setter
@@ -46,7 +52,24 @@ public class Juego
         }
     }
 
-    public boolean disparar(int x, int y)
+    public void organizarBarco(int id, String x, String y, byte orientacion, Usuario jugador1,
+                               Usuario jugador2, ListaDEService listaDEService)
+    {
+        jugador1 =tableroJugador1.getJugador();
+        jugador2 =tableroJugador2.getJugador();
+
+        if (jugador1 == tableroJugador1.jugador)
+        {
+            listaDEService.getListaBarcos();
+            DistribucionBarcoDTO barco = new DistribucionBarcoDTO(distribucionBarcoDTO.getBarco());
+        }
+       else
+        {
+
+        }
+    }
+
+    public boolean disparar(int x, int y,ListaDE listaDE)
     {
         return false;
     }

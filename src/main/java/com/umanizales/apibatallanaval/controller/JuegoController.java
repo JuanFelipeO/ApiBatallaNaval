@@ -1,5 +1,6 @@
 package com.umanizales.apibatallanaval.controller;
 
+import com.umanizales.apibatallanaval.model.ListaDE;
 import com.umanizales.apibatallanaval.model.dto.CoordenadaDTO;
 import com.umanizales.apibatallanaval.model.dto.RequestJuegoDTO;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
@@ -8,7 +9,6 @@ import com.umanizales.apibatallanaval.repository.UsuarioRepository;
 import com.umanizales.apibatallanaval.service.JuegoService;
 import com.umanizales.apibatallanaval.service.ListaDEService;
 import com.umanizales.apibatallanaval.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -73,4 +73,10 @@ public class JuegoController {
         return listaDEService.visualizarListaDE();
     }
 
+    @GetMapping(path = "/organizarbarcos")
+    public @ResponseBody
+    ListaDE organizarBarco()
+    {
+        return listaDEService.getListaBarcos();
+    }
 }

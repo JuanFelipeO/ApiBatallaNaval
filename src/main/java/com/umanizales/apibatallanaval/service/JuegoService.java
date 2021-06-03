@@ -2,6 +2,7 @@ package com.umanizales.apibatallanaval.service;
 
 import com.umanizales.apibatallanaval.model.Juego;
 import com.umanizales.apibatallanaval.model.dto.RespuestaDTO;
+import com.umanizales.apibatallanaval.model.entities.Tablero;
 import com.umanizales.apibatallanaval.model.entities.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,4 +43,19 @@ public class JuegoService {
         }
     }
 
+    public ResponseEntity<Object> validarExistenciaJuego(Tablero tablerojugador1, Tablero tablerojugador2)
+    {
+        tablerojugador1 = juego.tableroJugador1;
+        tablerojugador2 = juego.tableroJugador2;
+        if(tablerojugador1 != null && tablerojugador2 != null)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("El juego ya esta creado",
+                    null,null), HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,"Aun el juego no se encuentra creado"), HttpStatus.CONFLICT);
+        }
+    }
 }
