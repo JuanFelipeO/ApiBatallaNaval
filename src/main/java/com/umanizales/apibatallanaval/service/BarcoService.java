@@ -49,4 +49,14 @@ public class BarcoService {
         }
     }
 
+    public ResponseEntity<Object> findUsersByCasillas(short numCasillas) {
+        try {
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    barcoRepository.encontrarBarcoPorNumeroCasillas(numCasillas),
+                    null), HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null, "Numero de casillas no corresponde"), HttpStatus.CONFLICT);
+        }
+    }
 }

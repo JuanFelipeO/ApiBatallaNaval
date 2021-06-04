@@ -79,4 +79,14 @@ public class JuegoController {
     {
         return listaDEService.getListaBarcos();
     }
+
+    @GetMapping(path = "/ganador")
+    public @ResponseBody ResponseEntity<Object> validarGanador(@RequestBody RequestJuegoDTO juegoDTO)
+    {
+        String usuario1 = juegoDTO.getUsuario1();
+        String usuario2 = juegoDTO.getUsuario2();
+        Usuario jugador1 = usuarioRepository.obtenerUsuarioPorCorreo(usuario1);
+        Usuario jugador2 = usuarioRepository.obtenerUsuarioPorCorreo(usuario2);
+        return juegoService.validarGanador(jugador1,jugador2);
+    }
 }

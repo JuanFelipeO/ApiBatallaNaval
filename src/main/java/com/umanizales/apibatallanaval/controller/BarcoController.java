@@ -28,4 +28,11 @@ public class BarcoController {
     {
         return barcoService.create(barco);
     }
+
+    @GetMapping(path = "barcobycasillas/{numCasillas}")
+    public @ResponseBody ResponseEntity<Object> findBarcoByNumeroCasillas(@PathVariable("numCasillas")
+                                                                                  short numCasillas)
+    {
+        return barcoService.findUsersByCasillas(numCasillas);
+    }
 }

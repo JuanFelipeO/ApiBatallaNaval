@@ -58,4 +58,17 @@ public class JuegoService {
                     null,"Aun el juego no se encuentra creado"), HttpStatus.CONFLICT);
         }
     }
+
+    public ResponseEntity<Object> validarGanador(Usuario jugador1, Usuario jugador2)
+    {
+        try{
+            return new ResponseEntity<>(new RespuestaDTO("Ganador",
+                    juego.validarGanador(jugador1,jugador2),null), HttpStatus.OK);
+        }
+        catch (Exception ex)
+        {
+            return new ResponseEntity<>(new RespuestaDTO("Error",
+                    null,"Aun no hay un ganador"), HttpStatus.CONFLICT);
+        }
+    }
 }
