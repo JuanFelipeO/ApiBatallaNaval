@@ -9,13 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JuegoService {
-    private ListaDEService listaDEService; //inyecto el servicio de ListaDE
+public class JuegoService
+{
+    private ListaDEService listaDEService;
 
-
-    // TERMINAR ESTE CONSTRUCTOR!!!
-
-    public JuegoService(ListaDEService listaDEService) {
+    public JuegoService(ListaDEService listaDEService)
+    {
         this.listaDEService = listaDEService;
     }
 

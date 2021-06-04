@@ -27,9 +27,4 @@ public class Tablero {
         this.jugador = jugador;
         this.listaBarco = listaBarco;
     }
-
-    public String validarDisparo(int x, int y) // terminar!!!
-    {
-        return null;
-    }
 }
