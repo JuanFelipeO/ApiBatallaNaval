@@ -117,5 +117,44 @@ public class ListaDE implements Serializable {
         return false;
     }
 
+    public DistribucionBarcoDTO encontrarxPosicion(int posicion)
+    {
+        if(cabeza!=null)
+        {
+            NodoDE temp= cabeza;
+            int cont=1;
+            while(posicion!=cont)
+            {
+                temp = temp.getSiguiente();
+                cont++;
+            }
+            /// Estamos parados en el que estabamos buscando
+            return (DistribucionBarcoDTO) temp.getDato();
+        }
+        return null;
+    }
 
+    /*
+    public boolean validarCoordenadasNodo(int x, int y)
+    {
+        if (cabeza == null){
+            return false;
+        }
+        else
+        {
+            int cont = 1;
+            NodoDE temp = cabeza;
+            while (temp.getSiguiente() != null){
+                if (temp.getDato()      )
+                {
+
+                }
+                cont++;
+                temp = temp.getSiguiente();
+            }
+            return false;
+        }
+    }
+
+ */
 }

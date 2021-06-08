@@ -58,16 +58,27 @@ public class JuegoService
         }
     }
 
-    public ResponseEntity<Object> validarGanador(Usuario jugador1, Usuario jugador2)
+    public Tablero visualizarTablero1()
+    {
+        return (Tablero) juego.visualizarTablero1();
+    }
+
+    public Tablero visualizarTablero2()
+    {
+        return (Tablero) juego.visualizarTablero2();
+    }
+
+    public ResponseEntity<Object> organizarBarco(int x, int y, byte orientacion, Usuario jugador,
+                                                 int posBarcoLista)
     {
         try{
-            return new ResponseEntity<>(new RespuestaDTO("Ganador",
-                    juego.validarGanador(jugador1,jugador2),null), HttpStatus.OK);
+            return new ResponseEntity<>(new RespuestaDTO("Exitoso",
+                    juego.organizarBarco(x,y,orientacion,jugador,posBarcoLista), null), HttpStatus.OK);
         }
         catch (Exception ex)
         {
             return new ResponseEntity<>(new RespuestaDTO("Error",
-                    null,"Aun no hay un ganador"), HttpStatus.CONFLICT);
+                    null,"El barco no pudo ser distribuido"), HttpStatus.CONFLICT);
         }
     }
 }

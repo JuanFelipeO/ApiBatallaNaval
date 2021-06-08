@@ -9,7 +9,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Tablero {
+public class Tablero
+{
     public int id;
     public int cols;
     public int filas;
@@ -26,5 +27,17 @@ public class Tablero {
         this.filas = filas;
         this.jugador = jugador;
         this.listaBarco = listaBarco;
+    }
+
+    public boolean validarExistenciaCoordenada(Tablero tablero, int filas, int cols)
+    {
+        if (filas <= tablero.getFilas() && cols <= tablero.getCols())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
